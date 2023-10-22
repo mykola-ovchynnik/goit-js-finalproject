@@ -15,7 +15,7 @@ function createMarkup(galleryItems, targetElement) {
                 class="gallery__image"
                 src="${preview}"
                 alt="${description}"
-        />
+            />
         </a>
         </li>`
     )
@@ -24,7 +24,7 @@ function createMarkup(galleryItems, targetElement) {
   targetElement.insertAdjacentHTML("afterbegin", markup);
 }
 
-const lightbox = new SimpleLightbox(".gallery a", {
+new SimpleLightbox(".gallery a", {
   captionSelector: "img",
   captionsData: "alt",
   captionPosition: "bottom",

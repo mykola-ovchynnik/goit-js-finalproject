@@ -40,15 +40,19 @@ function handlerClick(event) {
 
   modal = crateModal(originalImage);
   modal.show();
-
-  if (modal.visible()) {
-    document.addEventListener("keydown", handlerEscape);
-  }
 }
 
 function crateModal(originalImage) {
   const newInstance = basicLightbox.create(
-    `<img src="${originalImage}" width="800" height="600">`
+    `<img src="${originalImage}" width="800" height="600">`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", handlerEscape);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", handlerEscape);
+      },
+    }
   );
 
   return newInstance;
@@ -57,7 +61,5 @@ function crateModal(originalImage) {
 function handlerEscape(event) {
   if (event.code === "Escape") {
     modal.close();
-
-    document.removeEventListener("keydown", handlerEscape);
   }
 }
